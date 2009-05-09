@@ -108,14 +108,14 @@ InfoqPSNav.startPreloadingSlides = function(list)
     }
 
     var preloadingHost = document.createElement("div");
-    preloadingHost.setAttribute("style", "width:1px; height:1px;"); // XXX: set visibility
+    preloadingHost.setAttribute("style", "width:1px; height:1px; overflow:auto;"); // XXX: set visibility
     document.getElementsByTagName("body")[0].appendChild(preloadingHost);
     
     var preloadOne = function(index) {
 	var url = list[index];
 	if (!url) {
 	    //GM_log("done");
-	    preloadingHost.parentNode.removeChild(preloadingHost);
+	    //preloadingHost.parentNode.removeChild(preloadingHost);
 	    return;
 	}
 
@@ -189,10 +189,12 @@ InfoqPSNav.addLinks = function(original)
     var handlePrevOrNextKey = function(evt) {
 	switch (evt.charCode)
 	{
+	case 107: // "k"
 	case 112: // "p"
 	    evt.preventDefault();
 	    InfoqPSNav.move(-1);
 	    break;
+	case 106: // "n"
 	case 110: // "n"
 	    evt.preventDefault();
 	    InfoqPSNav.move( 1);
